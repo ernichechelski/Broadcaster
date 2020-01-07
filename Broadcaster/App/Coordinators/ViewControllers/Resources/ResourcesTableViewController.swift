@@ -55,7 +55,9 @@ final class ResourcesTableViewController: UITableViewController, ResourcesTableV
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let message = messages[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = message.resourceUrl?.absoluteString ?? "N/A"
+        cell.textLabel?.text = message.resourceUrl?.lastPathComponent
+        cell.detailTextLabel?.text = message.resourceUrl?.absoluteString ?? "N/A"
+        cell.detailTextLabel?.numberOfLines = 0
         cell.textLabel?.numberOfLines = 0
         return cell
     }
