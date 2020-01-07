@@ -8,26 +8,33 @@
 
 import UIKit
 
-class DocumentViewController: UIViewController {
+protocol DocumentViewRoutes: ViewControllerRoutes {
+    var document: UIDocument? { get set }
+    var session: SessionFinder! { get set }
+}
+
+class DocumentViewController: UIViewController, DocumentViewRoutes {
     
     @IBOutlet weak var documentNameLabel: UILabel!
     
     var document: UIDocument?
+
+    var session: SessionFinder!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        // Access the document
         document?.open(completionHandler: { (success) in
             if success {
-                // Display the content of the document, e.g.:
                 self.documentNameLabel.text = self.document?.fileURL.lastPathComponent
-            } else {
-                // Make sure to handle the failed import appropriately, e.g., by presenting an error message to the user.
             }
         })
     }
     
+    @IBAction func broadcastFileButtonTapped(_ sender: UIButton) {
+        guard let url = document?.fileURL else { return }
+        session.broadcast(url)
+    }
+
     @IBAction func dismissDocumentViewController() {
         dismiss(animated: true) {
             self.document?.close(completionHandler: nil)
