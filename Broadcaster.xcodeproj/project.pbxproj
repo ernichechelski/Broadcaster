@@ -13,7 +13,6 @@
 		A319669423C483430040CD5E /* Connector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A319668523C483430040CD5E /* Connector.swift */; };
 		A319669523C483430040CD5E /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A319668723C483430040CD5E /* AppCoordinator.swift */; };
 		A319669623C483430040CD5E /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A319668923C483430040CD5E /* MainTableViewController.swift */; };
-		A319669723C483430040CD5E /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A319668A23C483430040CD5E /* AlertViewController.swift */; };
 		A319669923C483430040CD5E /* InfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A319668E23C483430040CD5E /* InfoTableViewController.swift */; };
 		A319669A23C483430040CD5E /* InfoImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A319668F23C483430040CD5E /* InfoImageTableViewCell.swift */; };
 		A319669B23C483430040CD5E /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A319669023C483430040CD5E /* Routes.swift */; };
@@ -28,6 +27,7 @@
 		A3E002BB23C4824A00BFAE04 /* BroadcasterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E002BA23C4824A00BFAE04 /* BroadcasterTests.swift */; };
 		A3E002C623C4824A00BFAE04 /* BroadcasterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E002C523C4824A00BFAE04 /* BroadcasterUITests.swift */; };
 		A3EC0DD923C4ACE100E5466F /* ResourcesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EC0DD823C4ACE100E5466F /* ResourcesTableViewController.swift */; };
+		A3EC0DDC23C5DBC000E5466F /* PeersList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EC0DDB23C5DBC000E5466F /* PeersList.swift */; };
 		D5A7E90598DB7C4B6E09E79A /* Pods_BroadcasterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B0279FAC207E8D4B73B9A47 /* Pods_BroadcasterTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -61,7 +61,6 @@
 		A319668523C483430040CD5E /* Connector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connector.swift; sourceTree = "<group>"; };
 		A319668723C483430040CD5E /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		A319668923C483430040CD5E /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
-		A319668A23C483430040CD5E /* AlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		A319668E23C483430040CD5E /* InfoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoTableViewController.swift; sourceTree = "<group>"; };
 		A319668F23C483430040CD5E /* InfoImageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoImageTableViewCell.swift; sourceTree = "<group>"; };
 		A319669023C483430040CD5E /* Routes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
@@ -82,6 +81,7 @@
 		A3E002C523C4824A00BFAE04 /* BroadcasterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BroadcasterUITests.swift; sourceTree = "<group>"; };
 		A3E002C723C4824A00BFAE04 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A3EC0DD823C4ACE100E5466F /* ResourcesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesTableViewController.swift; sourceTree = "<group>"; };
+		A3EC0DDB23C5DBC000E5466F /* PeersList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeersList.swift; sourceTree = "<group>"; };
 		F26F8D0D8A564DF48AECF756 /* Pods_Broadcaster_BroadcasterUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Broadcaster_BroadcasterUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -150,9 +150,9 @@
 				A3E002A323C4824900BFAE04 /* DocumentBrowserViewController.swift */,
 				A319668923C483430040CD5E /* MainTableViewController.swift */,
 				A3E002A523C4824900BFAE04 /* DocumentViewController.swift */,
-				A319668A23C483430040CD5E /* AlertViewController.swift */,
 				A319668D23C483430040CD5E /* Info */,
 				A3EC0DDA23C4B4BE00E5466F /* Resources */,
+				A3EC0DDB23C5DBC000E5466F /* PeersList.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -513,9 +513,9 @@
 				A3E002A823C4824900BFAE04 /* Document.swift in Sources */,
 				A3E002A623C4824900BFAE04 /* DocumentViewController.swift in Sources */,
 				A319669423C483430040CD5E /* Connector.swift in Sources */,
-				A319669723C483430040CD5E /* AlertViewController.swift in Sources */,
 				A319669623C483430040CD5E /* MainTableViewController.swift in Sources */,
 				A3E002A423C4824900BFAE04 /* DocumentBrowserViewController.swift in Sources */,
+				A3EC0DDC23C5DBC000E5466F /* PeersList.swift in Sources */,
 				A3E002A223C4824900BFAE04 /* AppDelegate.swift in Sources */,
 				A319669523C483430040CD5E /* AppCoordinator.swift in Sources */,
 			);

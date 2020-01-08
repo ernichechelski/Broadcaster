@@ -18,4 +18,5 @@ enum Routes {
     static let documentView = Storyboards.main.instantiateViewController(identifier: "DocumentViewController") as! DocumentViewRoutes
     static let documentBrowser = Storyboards.main.instantiateViewController(identifier: "Browser") as! DocumentBrowserRoutes
     static let resourcesList = Storyboards.main.instantiateViewController(identifier: "resources") as! ResourcesTableViewControllerRoutes
+    static let peersList = Storyboards.main.instantiateViewController(identifier: "peers") as! PeersTableViewControllerRoutes
 }

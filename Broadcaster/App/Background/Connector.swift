@@ -71,6 +71,7 @@ protocol SessionFinder {
     var messages: BehaviorRelay<[Message]> { get }
     var resources: BehaviorRelay<Message> { get }
     var status: BehaviorRelay<SessionFinderStatus> { get }
+    var connectedPeers: BehaviorRelay<[MCPeerID]> { get }
 }
 
 enum SessionFinderStatus {
@@ -258,9 +259,20 @@ extension DefaultSessionFinder: MCSessionDelegate {
 
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
         print("\(#function)", peerID, state)
-        guard state == .connected else { return }
-        connectedPeers.append(peerID)
-        isSessionConnected.accept(true)
+        switch state {
+        case .notConnected:
+            connectedPeers.accept(connectedPeers.value.filter({
+                !$0.displayName.elementsEqual(peerID.displayName)
+            }))
+            if connectedPeers.value.isEmpty {
+                isSessionConnected.accept(false)
+            }
+        case .connecting: break
+        case .connected:
+            connectedPeers.append(peerID)
+            isSessionConnected.accept(true)
+        @unknown default: break
+        }
     }
 
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {

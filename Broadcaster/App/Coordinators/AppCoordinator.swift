@@ -41,6 +41,10 @@ final class AppCoordinator {
             self?.showResourcesScene()
         }
 
+        routes.onShowPeersSelected = { [weak self] in
+            self?.showPeersScene()
+        }
+
         return routes
     }()
 
@@ -58,6 +62,12 @@ final class AppCoordinator {
 
     private lazy var resourcesView: ResourcesTableViewControllerRoutes = {
         var routes = Routes.resourcesList
+        routes.session = session
+        return routes
+    }()
+
+    private lazy var peersList: PeersTableViewControllerRoutes = {
+        var routes = Routes.peersList
         routes.session = session
         return routes
     }()
@@ -91,5 +101,9 @@ final class AppCoordinator {
 
     func showResourcesScene() {
         navigationController.show(resourcesView.viewController, sender: nil)
+    }
+
+    func showPeersScene() {
+        navigationController.show(peersList.viewController, sender: nil)
     }
 }

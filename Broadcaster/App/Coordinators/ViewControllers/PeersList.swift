@@ -1,25 +1,26 @@
 //
-//  ResourcesTableViewController.swift
+//  PeersList.swift
 //  Broadcaster
 //
-//  Created by Ernest Chechelski on 07/01/2020.
+//  Created by Ernest Chechelski on 08/01/2020.
 //  Copyright © 2020 Ernest Chechelski. All rights reserved.
 //
 
 import UIKit
 import RxSwift
+import MultipeerConnectivity
 
-protocol ResourcesTableViewControllerRoutes: ViewControllerRoutes {
+protocol PeersTableViewControllerRoutes: ViewControllerRoutes {
     var session: SessionFinder! { get set }
 }
 
-final class ResourcesTableViewController: UITableViewController, ResourcesTableViewControllerRoutes {
+final class PeersTableViewController: UITableViewController, PeersTableViewControllerRoutes {
 
     var session: SessionFinder!
 
     var disposeBag: DisposeBag! = DisposeBag()
 
-    var messages = [Message]()
+    var peers = [MCPeerID]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,11 +28,10 @@ final class ResourcesTableViewController: UITableViewController, ResourcesTableV
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        session.messages
-            .map({ $0.filter { $0.type == .resourceUrl }})
+        session.connectedPeers
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
-                self?.messages = $0
+                self?.peers = $0
                 self?.tableView.reloadData()
             })
             .disposed(by: disposeBag)
@@ -47,22 +47,14 @@ final class ResourcesTableViewController: UITableViewController, ResourcesTableV
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messages.count
+        return peers.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let message = messages[indexPath.row]
+        let peer = peers[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = message.resourceUrl?.lastPathComponent
-        cell.detailTextLabel?.text = message.resourceUrl?.absoluteString ?? "N/A"
-        cell.detailTextLabel?.numberOfLines = 0
+        cell.textLabel?.text = peer.displayName
         cell.textLabel?.numberOfLines = 0
         return cell
-    }
-
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let message = messages[indexPath.row]
-        guard let url = message.resourceUrl else { return }
-        present(UIActivityViewController(activityItems: [url] , applicationActivities: nil), animated: true)
     }
 }

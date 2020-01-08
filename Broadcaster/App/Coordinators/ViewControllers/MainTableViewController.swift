@@ -13,6 +13,7 @@ protocol MainViewControllerRoutes: ViewControllerRoutes {
     var session: SessionFinder! { get set }
     var onShowLogsSelected: (() -> Void)? { get set }
     var onShowResourcesSelected: (() -> Void)? { get set }
+    var onShowPeersSelected: (() -> Void)? { get set }
 }
 
 final class MainTableViewController: UITableViewController, MainViewControllerRoutes {
@@ -20,6 +21,8 @@ final class MainTableViewController: UITableViewController, MainViewControllerRo
     var onShowLogsSelected: (() -> Void)?
 
     var onShowResourcesSelected: (() -> Void)?
+
+    var onShowPeersSelected: (() -> Void)?
 
     var session: SessionFinder!
 
@@ -43,20 +46,25 @@ final class MainTableViewController: UITableViewController, MainViewControllerRo
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch (indexPath.section, indexPath.row) {
         case (0,0): // Status
+            tableView.cellForRow(at: indexPath)?.isSelected = false
             break
         case (0,1): // START
             session.start()
         case (0,2): // STOP
             session.stop()
-        case (0,3): // Show logs
+        case (0,3): // Received resources
+            onShowResourcesSelected?()
+        case (0,4): // Logs
             onShowLogsSelected?()
-        case (0,4): // Test transfer
+        case (0,5): // Chat
+            session.broadcast("Hello 👋")
+        case (0,6): // Peers
+            onShowPeersSelected?()
+        case (0,7): // Broadcast test image
             let image = UIImage(named: "test")!
             session.broadcast(image)
-        case (0,5): // Say hello
+        case (0,8): //Say hello
             session.broadcast("Hello 👋")
-        case (0,6): // Show resources
-            onShowResourcesSelected?()
         default: break
         }
     }
